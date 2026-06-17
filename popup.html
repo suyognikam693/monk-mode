@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monk Mode</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #000000; --surface: #0a0a0a; --border: #1a1a1a;
+      --green: #00c853; --text: #e0e0e0; --muted: #444;
+    }
+    body {
+      width: 260px; background: var(--bg); color: var(--text);
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    }
+    .bar {
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .title { color: var(--green); font-size: 11px; letter-spacing: .15em; }
+    .mode-wrap { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .mode {
+      border: 1px solid var(--border); border-radius: 3px;
+      padding: 10px 12px; cursor: pointer; transition: all .15s;
+    }
+    .mode:hover { border-color: #333; }
+    .mode.active { border-color: var(--green); background: rgba(0,200,83,.04); }
+    .mode-name { font-size: 11px; letter-spacing: .1em; color: var(--text);
+      display: flex; justify-content: space-between; align-items: center; }
+    .badge {
+      font-size: 8px; letter-spacing: .12em; padding: 2px 6px;
+      border: 1px solid var(--border); border-radius: 2px; color: var(--muted);
+    }
+    .mode.active .badge { border-color: var(--green); color: var(--green); }
+    .mode-desc { font-size: 9px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .footer { padding: 10px 16px; border-top: 1px solid var(--border);
+      font-size: 9px; color: #333; letter-spacing: .05em; }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <div class="dot"></div>
+    <span class="title">MONK MODE</span>
+  </div>
+  <div class="mode-wrap">
+    <div class="mode" id="blindfold">
+      <div class="mode-name">Mark-I: Blindfold <span class="badge" id="b1">ACTIVE</span></div>
+      <div class="mode-desc">Clean YouTube. Subscriptions only. No recommendations.</div>
+    </div>
+    <div class="mode" id="handcuff">
+      <div class="mode-name">Mark-II: Handcuff <span class="badge" id="b2">BETA</span></div>
+      <div class="mode-desc">Full terminal interface. Keyboard only. No YouTube UI.</div>
+    </div>
+  </div>
+  <div class="footer">v2.0 · youtube.com</div>
+  <script src="popup.js"></script>
+</body>
+</html>
